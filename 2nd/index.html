@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Firebase Web Basics</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+
+    <script src="https://use.fontawesome.com/939e9dd52c.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div style="background-color: azure" align="left">
+    <h1>All Users</h1>
+    <table style="border: dashed ; ">
+        <thead style="border: dashed">
+        <tr style="background-color: #33ffcc">
+            <td>Name</td>
+            <td>Email</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody id="table_body">
+        
+        </tbody>
+    </table>
+</div>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC0vC_5PP94vz1442Vd-T-HMgkiIGOKtE0",
+        authDomain: "fireweb-e80aa.firebaseapp.com",
+        databaseURL: "https://fireweb-e80aa.firebaseio.com",
+        projectId: "fireweb-e80aa",
+        storageBucket: "",
+        messagingSenderId: "107779829722"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+<script src="index.js"></script>
+
+</body>
+</html>
