@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WEB IMAGE</title>
+	<style media="screen">
+		body{
+			display: flex;
+			min-height: 100vh;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		#uploader{
+			-webkit-appearance : none;
+			appearance:none;
+			width: 50%;
+			margin-bottom: 10px;
+		}
+
+	</style>
+</head>
+<body>
+<progress value="0" max="100" id="uploader">0%</progress>
+
+<input type="file" value="upload" id="fileButton">
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC0vC_5PP94vz1442Vd-T-HMgkiIGOKtE0",
+        authDomain: "fireweb-e80aa.firebaseapp.com",
+        databaseURL: "https://fireweb-e80aa.firebaseio.com",
+        projectId: "fireweb-e80aa",
+        storageBucket: "",
+        messagingSenderId: "107779829722",
+        storageBucket:"gs://fireweb-e80aa.appspot.com"
+    };
+    firebase.initializeApp(config);
+
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+
+    //isten for file slelction
+    fileButton.addEventListener('change',function (e) {
+    	// body...
+    	//get file
+    	var file = e.target.files[0];
+
+    	//Create stotage Ref
+
+    	var storageRef = firebase.storage().ref('folder_name/'+file.name + new Date());
+    	//upload file
+    	var task = storageRef.put(file);
+    	//update progress bar
+    	
+    	task.on('state_changed',
+    		function progress(snapshot){
+    			var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    			uploader.value = percentage;
+    		},
+    		function error(err){
+
+    		},
+    		function complete(){
+
+    		});
+    	var x = task.then(function(snap){
+    		console.log(snap.downloadURL);
+    	});
+
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+<script src="index.js"></script>
+</body>
+</html>
